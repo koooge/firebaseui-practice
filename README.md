@@ -1,3 +1,5 @@
+![Node.js CI](https://github.com/koooge/firebaseui-practice/workflows/Node.js%20CI/badge.svg)
+
 # firebaseui-practice
 
 ## Project setup
