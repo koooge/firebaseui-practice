@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import firebase from "firebase/app";
+
 import Home from "../views/Home.vue";
 import Signin from "../views/Signin.vue";
 
@@ -27,6 +29,16 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (!user && to.name !== "Signin") {
+      next({ name: "Signin" });
+    } else {
+      next();
+    }
+  });
 });
 
 export default router;
