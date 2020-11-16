@@ -16,7 +16,7 @@ export default defineComponent({
     onMounted(() => {
       const ui = new firebaseui.auth.AuthUI(firebase.auth());
       ui.start("#firebaseui-auth-container", {
-        signInSuccessUrl: "/",
+        signInSuccessUrl: process.env.BASE_URL,
         signInOptions: [
           firebase.auth.EmailAuthProvider.PROVIDER_ID,
           firebase.auth.GoogleAuthProvider.PROVIDER_ID
