@@ -5,7 +5,7 @@ import firebase from "firebase/app";
 
 firebase.initializeApp({
   apiKey: "AIzaSyBlj7_xShtPULmPzs-lEl34QN1BkKP5CFI",
-  authDomain: "vueschool-firebase-auth-d1efe.firebaseapp.com",
+  authDomain: "vueschool-firebase-auth-d1efe.firebaseapp.com"
 });
 
 createApp(App)
