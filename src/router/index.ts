@@ -17,7 +17,8 @@ const routes: Array<RouteRecordRaw> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    meta: { requiresAuth: true }
   },
   {
     path: "/signin",
@@ -38,7 +39,7 @@ router.beforeEach((to, from, next) => {
   }
 
   firebase.auth().onAuthStateChanged(user => {
-    if (!user && to.name !== "Signin") {
+    if (!user && to.matched.some(record => record.meta.requiresAuth)) {
       return next({ name: "Signin" });
     } else {
       return next();
