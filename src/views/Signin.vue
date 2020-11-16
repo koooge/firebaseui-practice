@@ -14,7 +14,8 @@ export default defineComponent({
   name: "Signin",
   setup() {
     onMounted(() => {
-      const ui = new firebaseui.auth.AuthUI(firebase.auth());
+      let ui = firebaseui.auth.AuthUI.getInstance();
+      if (!ui) ui = new firebaseui.auth.AuthUI(firebase.auth());
       ui.start("#firebaseui-auth-container", {
         signInSuccessUrl: process.env.BASE_URL,
         signInOptions: [
