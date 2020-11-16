@@ -32,11 +32,16 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  if (to.path === "/signout") {
+    firebase.auth().signOut();
+    return next({name: "Home"});
+  }
+
   firebase.auth().onAuthStateChanged(user => {
     if (!user && to.name !== "Signin") {
-      next({ name: "Signin" });
+      return next({ name: "Signin" });
     } else {
-      next();
+      return next();
     }
   });
 });
